@@ -1,2 +1,0 @@
-# plotinum.github.io
-yessir
