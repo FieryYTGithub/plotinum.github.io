@@ -11,3 +11,39 @@
 h1 {
     font-family: sans-serif;
 }
+/*Navigation (Landing Page)*/
+header {
+    position: sticky;
+    width: 100%;
+    background-color: #adadad;
+    z-index: 9999;
+}
+header nav {
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+}
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+header nav ul li {
+    font-size: 1.25rem;
+}
+header nav ul li a {
+    text-decoration: none;
+    color: #77f;
+}
+header nav ul li a:hover {
+    color: rgb(158, 158, 255);
+}
+  
+header nav ul li a.active {
+    color: rgb(158, 158, 255);
+    text-decoration: underline;
+}
