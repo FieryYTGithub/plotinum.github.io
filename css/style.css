@@ -7,9 +7,22 @@
     width: 256px;
     height: 50px;
 }
+img { 
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Universal support since 2021   */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+
+}
 /* Fonts */
-h1 {
-    font-family: sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 /*Navigation (Landing Page)*/
 header {
@@ -18,32 +31,22 @@ header {
     background-color: #adadad;
     z-index: 9999;
 }
-header nav {
-    max-width: 1200px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    padding: 0.75rem 1rem;
-}
-header nav ul {
+header ul {
     display: flex;
     list-style: none;
     gap: 1rem;
 }
-header nav ul li {
-    font-size: 1.25rem;
+header ul li {
+    font-size: 2.25rem;
 }
-header nav ul li a {
+header ul li a {
     text-decoration: none;
     color: #77f;
 }
-header nav ul li a:hover {
+header ul li a:hover {
     color: rgb(158, 158, 255);
 }
-  
-header nav ul li a.active {
+header ul li a.active {
     color: rgb(158, 158, 255);
     text-decoration: underline;
 }
