@@ -1,0 +1,3 @@
+Something-XD - Plotinum Title Icon
+__Fiery - Plotinum Title
+slurr - Title Case Function (index.js)
