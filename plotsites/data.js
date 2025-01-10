@@ -1,13 +1,3 @@
-// This code is top secret frfr
-
-//This code it for getting the data
-
-
-// This code is for showing the data.
-// This piece of code was before prompt
-const unused1 = '{"id":9066, "name":"Wallrunning", "owner":"__Fiery", "node":"1", "tags":"Parkour, Roleplay, Miscellaneous"}'
-// Right now I havent hooked up the website to Firebase, so prompt() is the way to go right now.
-const jsontoparse = '{"id":9066, "name":"Wallrunning", "owner":"__Fiery", "node":1, "tags":"Parkour, Roleplay, Miscellaneous"}'
 // Parse the JSON, parse it NOW.
 const obj = JSON.parse('{"id":9066, "name":"Wallrunning", "owner":"__Fiery", "node":"1", "tags":"Parkour, Roleplay, Miscellaneous", "icon":"Reinforced_Deepslate"}'); // DF needs this. I dont wanna use templates
 // Do the tab appearance
