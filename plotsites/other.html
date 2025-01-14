@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="" id="favicon">
+    <title id="plotnametabtitle">oops</title>
+    <!-- Load the Supabase library before using it -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Initialize the Supabase client AFTER the library is loaded
+        window.onload = function() {
+            // Use createClient directly from the Supabase global object
+            const supabaseUrl = 'https://ioqyyizmfzdldbolttdp.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlvcXl5aXptZnpkbGRib2x0dGRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY0NjcyMjAsImV4cCI6MjA1MjA0MzIyMH0.LT9j4_jU_FanYu0tw2mZKTNSwY0RGATROzVsBNChY0o';
+            const supabase = supabase.createClient(supabaseUrl, supabaseKey);  // Initialize supabase client correctly
+            
+            // Do the prompt
+            var plotid = prompt("What is the plot ID you would like to search for?", "Any registered plot ID in the website");
+
+            // Get the stuff function
+            async function getTheStuff() {
+                const { data, error } = await supabase
+                    .from('plots')
+                    .select()
+                    .eq('plotid', plotid);
+
+                if (error) {
+                    console.error("Error:", error);
+                    return null;
+                }
+                return data;
+            }
+
+            // Once the data is fetched, update the page
+            async function updatePage() {
+                const json = await getTheStuff();
+                if (json && json.length > 0) {
+                    // Set favicon and title
+                    const favicon = document.getElementById("favicon");
+                    favicon.href = "https://minecraft.wiki/images/Invicon_" + json[0].icon + ".png";
+                    document.getElementById("plotnametabtitle").innerHTML = json[0].name + " - Plotinum";
+
+                    // Set text content
+                    document.getElementById("plotnamebig").innerText = json[0].name + " (" + json[0].id + ")";
+                    document.getElementById("plotname").innerHTML = "Plot Name: " + json[0].name;
+                    document.getElementById("owner").innerHTML = "Owner: " + json[0].owner;
+                    document.getElementById("node").innerHTML = "Node: " + json[0].node;
+                    document.getElementById("tags").innerHTML = "Tags: " + json[0].tags;
+
+                    // Set icon image
+                    const image = document.getElementById("icon");
+                    image.src = "https://minecraft.wiki/images/Invicon_" + json[0].icon + ".png";
+                } else {
+                    console.error("No data found for plot ID:", plotid);
+                }
+            }
+
+            // Call the updatePage function to fetch and display the data
+            updatePage();
+        }
+    </script>
+</head>
+
+<body>
+    <img src="" id="icon">
+    <h1 id="plotnamebig">if you see this, something went wrong</h1>
+    <p id="plotname">if you see this, something went wrong</p>
+    <p id="owner">if you see this, something went wrong</p>
+    <p id="node">if you see this, something went wrong</p>
+    <p id="tags">if you see this, something went wrong</p>
+</body>
+
+</html>

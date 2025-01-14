@@ -3,17 +3,53 @@
 <link rel="icon" href="" id="favicon">
 <title id="plotnametabtitle">oops</title>
 <head>
+<script type="module">
+    // Initialize the Spuabase (amazing spelling) client
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
+    const supabase = createClient('https://ioqyyizmfzdldbolttdp.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlvcXl5aXptZnpkbGRib2x0dGRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY0NjcyMjAsImV4cCI6MjA1MjA0MzIyMH0.LT9j4_jU_FanYu0tw2mZKTNSwY0RGATROzVsBNChY0o')
+    console.log('Supabase Instance: ', supabase)
+    // Do the prompt
+    var registerid = prompt("What is the register ID you would like to search for?")
+    // Get the stuff
+    async function getTheStuff() {
+        const { data, error } = await supabase
+            .from('plots')
+            .select()
+        if (error) {
+            console.error("error oh no error")
+            console.error(error)
+        }
+        if (data) {
+            console.log(data)
+            return data
+        }
+    }
+    const obj = await getTheStuff()
+    // Cool, now get the correct plot data.
+    const info = obj[registerid - 1].plotinfo
+    // Do the tab appearance
+    const favicon = document.getElementById("favicon")
+    favicon.href = "https://minecraft.wiki/images/Invicon_" + info.icon + ".png";
+    document.getElementById("plotnametabtitle").innerHTML = info.name + " - Plotinum"
+    // Add the text elements
+    document.getElementById("plotnamebig").innerText = info.name + " (" + info.id + ")";
+    document.getElementById("plotname").innerHTML =  "Plot Name: "+ info.name;
+    document.getElementById("owner").innerHTML = "Owner: "+ info.owner;
+    document.getElementById("node").innerHTML = "Node: "+ info.node;
+    document.getElementById("tags").innerHTML = "Tags: "+ info.tags;
+    const image = document.getElementById("icon");
+    image.src = "https://minecraft.wiki/images/Invicon_" + info.icon + ".png";
+</script>
 </head>
 
 <body>
-    <img src="" id="icon">
-    <h1 id="plotnamebig">if you see this, something went wrong</h1>
-    <p id="plotname">if you see this, something went wrong</p>
-    <p id="owner">if you see this, something went wrong</p>
-    <p id="node">if you see this, something went wrong</p>
-    <p id="tags">if you see this, something went wrong</p>
-    <script src="data.js"></script>
+<img src="" id="icon">
+<h1 id="plotnamebig">if you see this, something went wrong</h1>
+<p id="plotname">if you see this, something went wrong</p>
+<p id="owner">if you see this, something went wrong</p>
+<p id="node">if you see this, something went wrong</p>
+<p id="tags">if you see this, something went wrong</p>
 </body>
 
 </html>
